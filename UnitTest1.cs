@@ -1,9 +1,4 @@
 ﻿using MoodAnalyserProblem;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TestCase
 {
@@ -11,58 +6,19 @@ namespace TestCase
     public class UnitTest1
     {
         [TestMethod]
-        public void TestCase1_1()
+        public void TestMethodForHappyMood()
         {
-            string input = "I am in Sad Mood";
-            string expected = "SAD";
-
-
-            MoodAnalyzer moodAnalyzer = new MoodAnalyzer();
-
-            string actual = moodAnalyzer.analyseMood(input);
-
+            MoodAnalyzer moodAnalyser = new MoodAnalyzer("I am in happy Mood");
+            string expected = "happy";
+            string actual = moodAnalyser.AnalyzeMood();
             Assert.AreEqual(expected, actual);
         }
-
         [TestMethod]
-        public void TestCase1_2()
+        public void TestMethodForSadMood()
         {
-            string input = "I am in Any Mood";
-            string expected = "HAPPY";
-
-
-            MoodAnalyzer moodAnalyzer = new MoodAnalyzer();
-
-            string actual = moodAnalyzer.analyseMood(input);
-
-            Assert.AreEqual(expected, actual);
-        }
-
-        [TestMethod]
-        public void Refactor1_1()
-        {
-            string input = "I am in Sad Mood";
-            string expected = "SAD";
-
-
-            MoodAnalyser moodAnalyser = new MoodAnalyser();
-
-            string actual = moodAnalyser.msg;
-
-            Assert.AreEqual(expected, actual);
-        }
-
-        [TestMethod]
-        public void Refactor1_2()
-        {
-            string input = "I am in Happy Mood";
-            string expected = "SAD";
-
-
-            MoodAnalyser moodAnalyser = new MoodAnalyser();
-
-            string actual = moodAnalyser.msg;
-
+            MoodAnalyzer moodAnalyser = new MoodAnalyzer("I am in sad Mood");
+            string expected = "sad";
+            string actual = moodAnalyser.AnalyzeMood();
             Assert.AreEqual(expected, actual);
         }
     }
