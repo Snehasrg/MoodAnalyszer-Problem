@@ -25,15 +25,16 @@ namespace TestCase
         public void TestMethodForCustomizedNullException()
 
         {
-
+            string expected = "Mood should not be NULL";
             try
             {
-                string input = null;
-                var analyze = new MoodAnalyzer(input);
+
+                MoodAnalyzer moodAnalyser = new MoodAnalyzer(null);
+                moodAnalyser.AnalyzeMood();
             }
-            catch (NullReferenceException Exception)
+            catch (CustomException ex)
             {
-                Assert.AreEqual("Mood can not be Null.", Exception.Message);
+                Assert.AreEqual(expected, ex.Message);
             }
         }
         [TestMethod]
@@ -52,6 +53,57 @@ namespace TestCase
                 Assert.AreEqual(expected, ex.Message);
             }
 
+        }
+        [TestMethod]
+        public void Fordefault()
+        {
+            MoodAnalyzer expected = new MoodAnalyzer();
+            object obj = null;
+            try
+            {
+                obj = MoodAnalyzerFactory.CreateMoodAnalyse("ModeAnalyserPro.MoodAnalyser", "MoodAnalyser");
+
+            }
+            catch (CustomException e)
+            {
+                throw new System.Exception(e.Message);
+            }
+        }
+        [TestMethod]
+
+        public void Reflection_Return_Default_Constructor_No_Class_Found()
+        {
+            string expected = "Class not Found";
+            object obj = null;
+            try
+            {
+
+                obj = MoodAnalyzerFactory.CreateMoodAnalyse("MoodAnalyserProject.Mood", "Mood");
+
+            }
+            catch (CustomException actual)
+
+            {
+                Assert.AreEqual(expected, actual.Message);
+            }
+        }
+
+        [TestMethod]
+        public void Reflection_Return_Default_Constructor_No_Constructor_Found()
+        {
+            string expected = "Constructor not found";
+
+            try
+            {
+
+                MoodAnalyzerFactory.CreateMoodAnalyse("MoodAnalyserPro.MoodAnalyser", "MoodAnaly");
+
+            }
+            catch (CustomException actual)
+
+            {
+                Assert.AreEqual(expected, actual.Message);
+            }
         }
     }
 }

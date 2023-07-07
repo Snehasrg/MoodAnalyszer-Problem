@@ -11,8 +11,7 @@ namespace MoodAnalyserProblem
         Exception_Type type;
         public enum Exception_Type
         {
-            EMPTY_EXCEPTION,
-            NULL_EXCEPTION
+            EMPTY_EXCEPTION,NULL_EXCEPTION, CLASS_NOT_FOUND, CONSTRUCTOR_NOT_FOUND
         }
 
         public CustomException(Exception_Type type, string msg) : base(msg)
