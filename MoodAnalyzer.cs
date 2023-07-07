@@ -8,6 +8,7 @@ namespace MoodAnalyserProblem
 {
     public class MoodAnalyzer
     {
+
         string message;
 
         public MoodAnalyzer()
@@ -24,7 +25,7 @@ namespace MoodAnalyserProblem
             {
                 if (message.Equals(string.Empty))
                 {
-                    throw new CustomException(CustomException.Exception_Type.EMPTY_EXCEPTION, "Mood should not be empty");
+                    throw new CustomException(CustomException.ExceptionType.EMPTY_EXCEPTION, "Mood should not be empty");
                 }
                 else if (message.ToLower().Contains("happy"))
                 {
@@ -37,10 +38,11 @@ namespace MoodAnalyserProblem
             }
             catch (NullReferenceException)
             {
-                throw new CustomException(CustomException.Exception_Type.NULL_EXCEPTION, "Mood should not be NULL");
+                throw new CustomException(CustomException.ExceptionType.NULL_EXCEPTION, "Mood should not be NULL");
 
             }
         }
+
 
     }
 }

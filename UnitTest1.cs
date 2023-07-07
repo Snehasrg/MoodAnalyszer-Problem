@@ -61,7 +61,7 @@ namespace TestCase
             object obj = null;
             try
             {
-                obj = MoodAnalyzerFactory.CreateMoodAnalyse("ModeAnalyserPro.MoodAnalyser", "MoodAnalyser");
+                obj = MoodAnalyzerFactory.CreateMoodAnalyse("ModeAnalyserPro.MoodAnalyzer", "MoodAnalyser");
 
             }
             catch (CustomException e)
@@ -96,7 +96,7 @@ namespace TestCase
             try
             {
 
-                MoodAnalyzerFactory.CreateMoodAnalyse("MoodAnalyserPro.MoodAnalyser", "MoodAnaly");
+                MoodAnalyzerFactory.CreateMoodAnalyse("MoodAnalyserPro.MoodAnalyzer", "MoodAnaly");
 
             }
             catch (CustomException actual)
