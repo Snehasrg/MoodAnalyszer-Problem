@@ -8,11 +8,11 @@ namespace MoodAnalyserProblem
 {
     public class MoodAnalyzer
     {
-
         string message;
 
         public MoodAnalyzer()
         {
+            Console.WriteLine("Default constructor");
         }
 
         public MoodAnalyzer(string message)
@@ -42,7 +42,6 @@ namespace MoodAnalyserProblem
 
             }
         }
-
 
     }
 }

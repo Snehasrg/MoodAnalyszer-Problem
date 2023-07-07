@@ -5,6 +5,7 @@ namespace TestCase
     [TestClass]
     public class UnitTest1
     {
+
         [TestMethod]
         public void TestMethodForHappyMood()
         {
@@ -61,10 +62,10 @@ namespace TestCase
             object obj = null;
             try
             {
-                obj = MoodAnalyzerFactory.CreateMoodAnalyse("ModeAnalyserPro.MoodAnalyzer", "MoodAnalyser");
+                obj = MoodAnalyzerFactory.CreateMoodAnalyse("ModeAnalyserProject.MoodAnalyser", "MoodAnalyser");
 
             }
-            catch (CustomException e)
+            catch (Exception e)
             {
                 throw new System.Exception(e.Message);
             }
@@ -74,17 +75,17 @@ namespace TestCase
         public void Reflection_Return_Default_Constructor_No_Class_Found()
         {
             string expected = "Class not Found";
-            object obj = null;
+
             try
             {
 
-                obj = MoodAnalyzerFactory.CreateMoodAnalyse("MoodAnalyserProject.Mood", "Mood");
+                MoodAnalyzerFactory.CreateMoodAnalyse("MoodAnalyserProject.Mood", "Mood");
 
             }
-            catch (CustomException actual)
+            catch (CustomException ex)
 
             {
-                Assert.AreEqual(expected, actual.Message);
+                Assert.AreEqual(expected, ex.Message);
             }
         }
 
@@ -96,13 +97,72 @@ namespace TestCase
             try
             {
 
-                MoodAnalyzerFactory.CreateMoodAnalyse("MoodAnalyserPro.MoodAnalyzer", "MoodAnaly");
+                MoodAnalyzerFactory.CreateMoodAnalyse("MoodAnalyserPro.MoodAnalyser", "MoodAnalyser");
 
             }
             catch (CustomException actual)
 
             {
                 Assert.AreEqual(expected, actual.Message);
+            }
+        }
+        [TestMethod]
+        public void Reflection_Return_Parameterized_Constructor()
+        {
+            string message = "I am in happy mood";
+            MoodAnalyzer expected = new MoodAnalyzer(message);
+
+            try
+            {
+
+                MoodAnalyzerFactory.CreateMoodAnalyserParameter("MoodAnalyserProject.MoodAnalyser", "MoodAnalyser", message);
+
+            }
+            catch (CustomException ex)
+            {
+                throw new System.Exception(ex.Message);
+            }
+
+        }
+        //Invalid case
+        [TestMethod]
+        public void Reflection_Return_Parameterized_Class_Invalid()
+        {
+            string message = "I am in happy mood";
+            MoodAnalyzer expected = new MoodAnalyzer(message);
+            object actual = null;
+            try
+            {
+
+                MoodAnalyzerFactory.CreateMoodAnalyserParameter("MoodAnalyserProject.MoodAna", "MoodAnalyser", message);
+
+            }
+            catch (CustomException actual1)
+            {
+                Assert.AreEqual(expected, actual1.Message);
+            }
+        }
+        [TestMethod]
+        public void Reflection_Return_Method()
+        {
+            string expected = "happy";
+            string actual = MoodAnalyzerFactory.InvokeAnalyserMethod("happy", "AnalyseMood");
+            Assert.AreEqual(expected, actual);
+
+        }
+        [TestMethod]
+        public void Reflection_Return_Invalid_Method()
+        {
+            string expected = "Method not found";
+            try
+            {
+
+                string actual = MoodAnalyzerFactory.InvokeAnalyserMethod("happy", "Analyze");
+            }
+            catch (CustomException e)
+            {
+
+                Assert.AreEqual(expected, e.Message);
             }
         }
     }
